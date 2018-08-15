@@ -1,4 +1,5 @@
 # Задания
+OK, second exercise is over)
 
 ### Задание 2.1
 
