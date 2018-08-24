@@ -8,4 +8,9 @@
 
 '''
 
-MAC = 'AAAA:BBBB:CCCC'
+MAC = 'AAAA:BBBB:CCCC
+
+MAC='xxxx:xxxx:xxxx'
+MAC=MAC.replace(':','.')
+MAC
+

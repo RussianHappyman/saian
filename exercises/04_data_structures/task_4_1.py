@@ -7,6 +7,9 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
-'''
+NAT='ip nat inside source list ACL interface FastEthernet0/1 overload'
+NAT=NAT.replace('Fast','Gigabit')
+print(NAT)
+
 
 NAT = 'ip nat inside source list ACL interface FastEthernet0/1 overload'

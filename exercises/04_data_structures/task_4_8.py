@@ -19,3 +19,24 @@
 '''
 
 IP = '192.168.3.1'
+
+IP='192.168.3.1'
+ip=IP.split(.)
+ip=IP.split('.')
+ip
+a,b,c,d = int(ip)
+a,b,c,d = int(ip[i] for i in range(4))
+a,b,c,d = ip
+a = int(a)
+b = int(b)
+c = int(c)
+d = int (d)
+a,b,c,d
+iptemplate='''
+IP ADRESSS
+{0:<10} {1:<10} {2:<10} {3:<10}
+{0:<10b} {1:<10b} {2:<10b} {3:<10b}
+'''
+print(iptemplate.format(a,b,c,d))
+%history
+

@@ -14,3 +14,15 @@
 
 command1 = 'switchport trunk allowed vlan 1,3,10,20,30,100'
 command2 = 'switchport trunk allowed vlan 1,3,100,200,300'
+
+command1='switchport trunk allowed vlan 1,3,10,20,30,100'
+command2='switchport trunk allowed vlan 1,3,100,200,300'
+arr1=command1.split()
+arr2=command2.split()
+s1 = set(arr1[-1].split(','))
+s2 = set(arr2[-1].split(','))
+s=s1&s2
+vlans=list(s)
+vlans=list((int(vlans[i]) for i in range(3)))
+vlans.sort()
+

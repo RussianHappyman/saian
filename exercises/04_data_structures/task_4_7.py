@@ -9,3 +9,13 @@
 '''
 
 MAC = 'AAAA:BBBB:CCCC'
+help(int)
+help(bin)
+MAC='AAAA:BBBB:CCCC'
+MAC=MAC.replace(':','')
+MAC
+MAC=int(MAC,16)
+MAC=bin(MAC)
+print(MAC)
+%history
+
