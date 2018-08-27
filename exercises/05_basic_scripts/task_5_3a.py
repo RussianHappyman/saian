@@ -21,3 +21,35 @@ trunk_template = [
     'switchport trunk encapsulation dot1q', 'switchport mode trunk',
     'switchport trunk allowed vlan {}'
 ]
+
+access_type = {
+	'access' : {
+		'invite': 'Enter VLAN number:',
+		'int_n'	: '',
+		'vlan'	: '',
+		'template'	: '''
+interface {}
+switchport mode access 
+switchport access vlan {}
+switchport nonegotiate 
+spanning-tree portfast
+spanning-tree bpduguard enable
+'''
+		},
+	'trunk' : {
+		'invite': 'Enter allowed VLANs:',
+		'int_n' : '',
+		'vlan' 	: '',
+		'template' : '''
+interface {}
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk allowed vlan {}
+'''
+		}
+}
+k = list(access_type.keys())
+a = input('Enter interface mode {} '.format(k) )
+access_type[a]['int_n'] = input('Enter interface type and number: ')
+access_type[a]['vlan'] = input('{}'.format(access_type[a]['invite']))
+print(access_type[a]['template'].format(access_type[a]['int_n'],access_type[a]['vlan']))

@@ -48,3 +48,7 @@ london_co = {
         'routing': True
     }
 }
+a = input('Enter device name rounded qoutas:  ')
+k = list(london_co[a].keys())
+b = input('Enter parameteres listed this {} :  '.format(k))
+print(london_co[a].get(b,'parameter not found!'))

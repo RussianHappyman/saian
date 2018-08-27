@@ -17,3 +17,18 @@ num_list = [10, 2, 30, 100, 10, 50, 11, 30, 15, 7]
 word_list = [
     'python', 'ruby', 'perl', 'ruby', 'perl', 'python', 'ruby', 'perl'
 ]
+
+print(num_list)
+a = input('Enter value to find in the list   ')
+a = int (a)
+num_list.reverse()
+index=num_list.index(a)
+print('index of last appearance {} '.format(len(num_list)-index))
+print ('*'*50)
+print(word_list)
+
+a = input('Enter value to find in the list   ')
+word_list.reverse()
+index=word_list.index(a)
+print('index of last appearance {} '.format(len(word_list)-index))
+print ('*'*50)
