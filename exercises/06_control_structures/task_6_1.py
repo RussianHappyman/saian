@@ -19,3 +19,11 @@ D: 224-239
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 '''
+ip = input('Enter IP x.x.x.x :   ')
+a = int(ip.split('.')[0])
+if a <= 223 and a>1:	print("unicast")
+elif a>223 and a <225:	print("multicast")
+elif a==0:				print("unassigned")
+else:					print("unused")
+
+

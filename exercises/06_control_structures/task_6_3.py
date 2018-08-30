@@ -54,3 +54,17 @@ for intf, vlan in fast_int['access'].items():
             print(' {} {}'.format(command, vlan))
         else:
             print(' {}'.format(command))
+
+for intf, trunk_list in fast_int['trunk'].items():
+	print('interface FastEthernet' + intf)
+	for command in trunk_template:
+		if command.endswith('allowed vlan'):
+			if (trunk_list[0] == 'add'):
+				print(' {} add {}'.format(command, str(trunk_list[1:]).strip('[]').replace("'",'')))
+			elif (trunk_list[0] == 'only'):
+				print(' {} {}'.format(command, str(trunk_list[1:]).strip('[]').replace("'",'')))
+			else:
+				print(' {} remove {}'.format(command, str(trunk_list[1:]).strip('[]').replace("'",'')))
+		else:
+			print(' {}'.format(command))           
+
