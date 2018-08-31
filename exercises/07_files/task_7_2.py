@@ -12,3 +12,13 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 '''
+with open('config_sw1.txt','r') as f:
+	for line in f:
+		if not '!' in line and not '\n' == line[0]:
+			print(line[:-1])
+		
+
+'''f = open('config_sw1.txt','r')
+a = f.read().replace('!','').rstrip().split('\n')
+print('\n'.join(a))
+	'''	

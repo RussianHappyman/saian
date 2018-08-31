@@ -12,5 +12,15 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 '''
-
 ignore = ['duplex', 'alias', 'Current configuration']
+
+with open('config_sw1.txt','r') as f, open('config_sw1_cleared.txt','w+') as d :
+	for line in f:
+		ifprint = True
+		for i in range(3): 
+			if ignore[i] in line:
+				ifprint = False
+				break
+		if not '\n' == line[0] and ifprint:
+			d.write(line)
+			

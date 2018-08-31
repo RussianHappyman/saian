@@ -18,3 +18,8 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 '''
+with open('CAM_table.txt','r') as f:
+	for line in f:
+		if '.' in line:
+			a,b,_,c = line.split()
+			print('{}   {}   {}'.format(a,b,c))

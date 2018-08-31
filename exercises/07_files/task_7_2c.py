@@ -15,5 +15,18 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 '''
+from sys import argv
 
 ignore = ['duplex', 'alias', 'Current configuration']
+
+in_f, out_f = argv[1:]
+with open(in_f,'r') as f, open(out_f,'w+') as d :
+	for line in f:
+		ifprint = True
+		for i in range(3): 
+			if ignore[i] in line:
+				ifprint = False
+				break
+		if not '\n' == line[0] and ifprint:
+			d.write(line)
+			
