@@ -21,3 +21,21 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 '''
+def get_int_vlan_map():
+    access = {}
+    trunk = {}
+    with open('config_sw1.txt','r') as f:
+        for line in f:
+			if line.startswith('interface Fast'):
+				_,a = line.strip().split()
+			elif line.startswith(' switchport access'):
+				_,_,_,b = line.strip().split()
+				access.setdefault(a,b)
+			elif line.startswith(' switchport trunk allowed'):
+				_,_,_,_,c =  line.strip().split()
+				c = c.split(',')
+				trunk.setdefault(a,c)
+    print(access)
+    print(trunk)
+	
+get_int_vlan_map()

@@ -39,22 +39,34 @@ def generate_access_config(access):
     - значения: список команд, который надо выполнить на этом интерфейсе
     '''
 
-    access_template = [
-        'switchport mode access', 'switchport access vlan',
-        'switchport nonegotiate', 'spanning-tree portfast',
-        'spanning-tree bpduguard enable'
-    ]
-
     port_security = [
         'switchport port-security maximum 2',
         'switchport port-security violation restrict',
         'switchport port-security'
     ]
 
-
+    access_template = [
+        'switchport mode access', 'switchport access vlan',
+        'switchport nonegotiate', 'spanning-tree portfast',
+        'spanning-tree bpduguard enable'
+    ]
+    list_keys = list(access_dict.keys())
+    res = dict.fromkeys(list_keys,[])
+    #res = {key : [] for key in list_keys}
+    for i in range(len(list_keys)):
+        access_template[1] = 'switchport access vlan '+str(access[list_keys[i]])
+        if psecurity:
+            res[list_keys[i]]=access_template+port_security
+        else:
+            res[list_keys[i]] = access_template + []
+    print(res)
+        
+    
 access_dict = {
     'FastEthernet0/12': 10,
     'FastEthernet0/14': 11,
     'FastEthernet0/16': 17,
     'FastEthernet0/17': 150
 }
+psecurity = False
+generate_access_config(access_dict)

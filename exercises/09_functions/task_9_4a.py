@@ -49,3 +49,19 @@ def check_ignore(command, ignore):
 
     '''
     return any(word in command for word in ignore)
+    
+def Parse():
+	res = {}
+	sub_command = []
+	before_sub = []
+	with open('config_sw1.txt','r') as f:
+		for line in f:
+			if not check_ignore(line,ignore) and not '!' in line:	
+				if line.startswith(' '):
+					sub_command.append(line[:-1])
+				else:
+					sub_command = []
+					res.setdefault(line[:-1] ,sub_command)
+	print(res)
+Parse()
+				
