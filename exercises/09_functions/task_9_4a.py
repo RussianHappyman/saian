@@ -45,23 +45,60 @@ def check_ignore(command, ignore):
     command - строка. Команда, которую надо проверить
     ignore - список. Список слов
 
+
     Возвращает True, если в команде содержится слово из списка ignore, False - если нет
 
     '''
     return any(word in command for word in ignore)
-    
+   
 def Parse():
-	res = {}
-	sub_command = []
-	before_sub = []
-	with open('config_sw1.txt','r') as f:
-		for line in f:
-			if not check_ignore(line,ignore) and not '!' in line:	
-				if line.startswith(' '):
-					sub_command.append(line[:-1])
+	#initialize lists` variables
+	res=[]
+	res_dict = {}
+	sub_dict = {}
+	sub = []
+	#initialize flags 
+	flag_0 = False
+	flag_1 = False
+	flag_2 = False
+	#open file
+	f = open('config_r1.txt','r')
+	#making list
+	s=f.read().split('\n')
+	for i in range(len(s)):
+		if s[i] != '' :
+			res.append(s[i])	
+	#initialize counter of cycle
+	i=len(res)-1
+	#main cycle we will read file from the end to get right picture of commands
+	while i >= 0:
+		#check commands for unwanted words
+		if not '!' in res[i] and not check_ignore(res[i],ignore): 
+			#if line is global command
+			if not res[i].startswith(' '):
+				#if global command has subcommands
+				if flag_1:
+					res_dict.setdefault(res[i],sub_dict) # add sub to global command
+					flag_1=False #turn off flag
+					sub_dict = {} #and reinitialize subcommand'2 dictionary 
+				#without any subcommand
 				else:
-					sub_command = []
-					res.setdefault(line[:-1] ,sub_command)
-	print(res)
+					res_dict.setdefault(res[i],[])		
+			#if there is sub of subcommands,then make list of theese subs
+			elif res[i].startswith('  '):
+				flag_2 = True #turn on flag of sub of subcommand
+				sub.append(res[i])
+			#if it is subcommand
+			else :
+				flag_1 = True # turn on flag of subcommands
+				if flag_2 :	# if subcommans has subs then add subs to subcommand
+					sub_dict.update({res[i]:sub})
+					flag_2=False # turn off flag of sub of sub
+					sub = [] #reinitialize  sub
+				else:
+					sub_dict.update({res[i]:[]}) # or not subs of sub
+		i-=1
+	print(res_dict)
+
 Parse()
 				

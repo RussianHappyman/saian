@@ -27,3 +27,18 @@ R6           Fa 0/2          143           R S I           2811       Fa 0/0
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 '''
+Device_title = ['R','S','T','P','B','r','I']
+def parse_cdp_neighbors(fil):
+	res_dict = {}
+	with open(fil,'r') as f:
+		for line in f:
+			print(line[:-1])
+			if 'cdp' in line:
+				r = line[:line.find('>')]
+			elif line[0] in Device_title:
+				cdp = line.rstrip().split()
+				res_dict.setdefault((r,cdp[1]+cdp[2]),(cdp[0],cdp[-2]+cdp[-1]))
+	print('\n\n\n\n {}'.format(res_dict))
+			
+	
+parse_cdp_neighbors('sw1_sh_cdp_neighbors.txt')	
