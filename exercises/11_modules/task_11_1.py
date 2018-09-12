@@ -38,7 +38,7 @@ def parse_cdp_neighbors(fil):
 			elif line[0] in Device_title:
 				cdp = line.rstrip().split()
 				res_dict.setdefault((r,cdp[1]+cdp[2]),(cdp[0],cdp[-2]+cdp[-1]))
-	print('\n\n\n\n {}'.format(res_dict))
+	return(res_dict)
 			
 	
-parse_cdp_neighbors('sw1_sh_cdp_neighbors.txt')	
+
