@@ -58,9 +58,9 @@ def generate_access_config(access):
     list_keys = list(access_dict.keys())
     res = []
     for i in range(len(list_keys)):
-		access_template[1] = 'switchport access vlan '+str(access[list_keys[i]])
-		res.append(list_keys[i])
-		res.extend(access_template)
+        access_template[1] = 'switchport access vlan '+str(access[list_keys[i]])
+        res.append(list_keys[i])
+        res.extend(access_template)
     print(res)
     
 access_dict = {

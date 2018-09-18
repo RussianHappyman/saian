@@ -32,3 +32,22 @@
 > pip install graphviz
 
 '''
+
+def main():
+    key = []
+    res_keys = []
+    from draw_network_graph import draw_topology
+    from task_11_1 import parse_cdp_neighbors
+    list_of_files = ['sh_cdp_n_r1.txt','sh_cdp_n_r2.txt','sh_cdp_n_r3.txt','sh_cdp_n_sw1.txt']
+    res = {}
+    for i in range(len(list_of_files)):
+        k = parse_cdp_neighbors(list_of_files[i])
+        key = list(k.keys())
+        for j in range(len(key)):
+            if res.get(k[key[j]],'no') =='no':
+                res.update(k)
+    print(res)
+    draw_topology(res)
+
+if __name__ == "__main__" :
+	main()

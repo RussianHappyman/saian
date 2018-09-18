@@ -23,14 +23,18 @@
 > apt-get install graphviz
 
 > И модуль python для работы с graphviz:
-> pip install graphviz
+> pip install graphviz`
 
 '''
-from draw_network_graph import draw_topology 
-from task_11_1 import parse_cdp_neighbors
 
-draw_topology(parse_cdp_neighbors('sw1_sh_cdp_neighbors.txt'))
+def main():
+	from draw_network_graph import draw_topology 
+	from task_11_1 import parse_cdp_neighbors
+	list_of_files = ['sh_cpd_n_r1.txt','sh_cpd_n_r2.txt','sh_cpd_n_r3.txt','sh_cpd_n_r1.txt']
+	draw_topology(parse_cdp_neighbors('sw1_sh_cdp_neighbors.txt'))
 
+if __name__ == "__main__" :
+	main()
 
 
 

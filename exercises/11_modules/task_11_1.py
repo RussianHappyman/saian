@@ -39,6 +39,8 @@ def parse_cdp_neighbors(fil):
 				cdp = line.rstrip().split()
 				res_dict.setdefault((r,cdp[1]+cdp[2]),(cdp[0],cdp[-2]+cdp[-1]))
 	return(res_dict)
+
+	parse_cdp_neighbors('sw1_sh_cdp_neighbors.txt')
 			
 	
 
