@@ -20,3 +20,21 @@
 диапазоны адресов и так далее, так как обрабатывается вывод команды, а не ввод пользователя.
 
 '''
+
+import re
+import argparse
+
+def incl(f_name, re_key):
+    with open(f_name) as f:
+       for line in f:
+           match = re.search(re_key, line)
+           if match:
+               print(match.group())
+
+parser = argparse.ArgumentParser(description='script likes include cisco command and a little more)')
+
+parser.add_argument('filename', action = "store", help = 'File name')
+parser.add_argument('keyword', action = "store", help = 'Key word')
+
+args = parser.parse_args()
+incl(args.filename, args.keyword)

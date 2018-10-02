@@ -20,3 +20,19 @@
 диапазоны адресов и так далее, так как обрабатывается вывод команды, а не ввод пользователя.
 
 '''
+import re
+import argparse
+
+def incl(f_name):
+    res = []
+    with open(f_name) as f:
+       match = re.match('( ip address (\S+) (\S+)+\n)+',f.read())
+       if match: print(match.groups())
+
+
+parser = argparse.ArgumentParser(description='script likes include cisco command and a little more)')
+
+parser.add_argument('filename', action = "store", help = 'File name')
+
+args = parser.parse_args()
+incl(args.filename)

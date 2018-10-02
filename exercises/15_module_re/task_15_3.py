@@ -22,3 +22,21 @@
 диапазоны адресов и так далее, так как обрабатывается вывод команды, а не ввод пользователя.
 
 '''
+
+import re
+import argparse
+
+def incl(f_name):
+    res = []
+    with open(f_name) as f:
+       for line in f:
+           match = re.search('((\d+\.?){4}) (\d+\.+\d+\.+\d+\.+\d+)',line)
+           if match:
+               res.append((match.group(1),match.group(3)))
+    print(res)
+parser = argparse.ArgumentParser(description='script likes include cisco command and a little more)')
+
+parser.add_argument('filename', action = "store", help = 'File name')
+
+args = parser.parse_args()
+incl(args.filename)

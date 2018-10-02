@@ -38,3 +38,29 @@ Loopback100                100.0.0.1       YES manual up                    up
 
 
 '''
+
+import re
+import argparse
+
+def incl(f_name, re_key):
+    regex = re.compile(re_key)
+    print(f_name, regex)
+    with open(f_name) as f:
+       for line in f:
+           match = regex.search(line)
+           if match:
+               print(line[:-1])
+
+parser = argparse.ArgumentParser(description='script likes include cisco command')
+
+parser.add_argument('filename', action = "store", help = 'File name')
+parser.add_argument('keyword', action = "store", help = 'Key word')
+
+args = parser.parse_args()
+incl(args.filename, args.keyword)
+
+
+
+
+
+
