@@ -24,14 +24,19 @@ import re
 import argparse
 
 def incl(f_name):
-    res = []
+    res_dict = {}
+    fl1 = False
     with open(f_name) as f:
-       match = re.match('( ip address (\S+) (\S+)+\n)+',f.read())
-       if match: print(match.groups())
-
+        for line in f:
+            if line.startswith('interface'):
+                fl1 = True
+                match = re.match('(interface \S+)',line)
+            elif line.startswith(' ip address ') and fl1 :
+                res_dict[match.group()] = (re.match(' ip address (\S+) (\S+)', line).group(1), re.match(' ip address (\S+) (\S+)',line).group(2))
+                fl1 = False
+    print(res_dict)
 
 parser = argparse.ArgumentParser(description='script likes include cisco command and a little more)')
-
 parser.add_argument('filename', action = "store", help = 'File name')
 
 args = parser.parse_args()

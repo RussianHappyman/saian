@@ -24,3 +24,31 @@ Ethernet0/1 соответствует список из двух кортеже
 диапазоны адресов и так далее, так как обрабатывается вывод команды, а не ввод пользователя.
 
 '''
+import re
+import argparse
+
+def incl(f_name):
+    regex = ' ip address (\S+) (\S+)'
+    res_dict = {}
+    fl1 = False
+    with open(f_name) as f:
+        for line in f:
+            if line.startswith('interface'):
+                fl1 = True
+                match = re.match('(interface \S+)',line)
+            elif line.startswith(' ip address '):
+                if fl1:
+                    res_dict[match.group()] = tuple((re.match(regex, line).group(1),
+                                                     re.match(regex, line).group(2)))
+                    temp = res_dict[match.group()]
+                    fl1 = False
+                else:
+                    res_dict[match.group()] = [(temp),(re.match(regex, line).group(1),
+                                                       re.match(regex, line).group(2))]
+    print(res_dict)
+
+parser = argparse.ArgumentParser(description='script likes include cisco command and a little more)')
+parser.add_argument('filename', action = "store", help = 'File name')
+
+args = parser.parse_args()
+incl(args.filename)

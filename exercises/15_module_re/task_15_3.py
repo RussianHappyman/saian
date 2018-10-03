@@ -30,7 +30,7 @@ def incl(f_name):
     res = []
     with open(f_name) as f:
        for line in f:
-           match = re.search('((\d+\.?){4}) (\d+\.+\d+\.+\d+\.+\d+)',line)
+           match = re.search(' ip address ((\d+\.?){4}) (\d+\.+\d+\.+\d+\.+\d+)',line)
            if match:
                res.append((match.group(1),match.group(3)))
     print(res)

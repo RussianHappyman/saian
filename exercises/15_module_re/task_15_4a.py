@@ -22,4 +22,19 @@
 
 '''
 
+from task_15_4 import parse_show
+from pprint import pprint
+from tabulate import tabulate
 headers = ['interface', 'address', 'status', 'protocol']
+list, res = [], []
+dic = {}
+
+list = parse_show('sh_ip_int_br_2.txt')
+for key in list:
+    dic = {}
+    for i in range(4):
+        dic[headers[i]] = key[i]
+    res.append(dic)
+pprint(tabulate(res))
+
+

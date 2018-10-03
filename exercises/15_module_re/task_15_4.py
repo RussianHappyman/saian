@@ -21,3 +21,21 @@
 Проверить работу функции на примере файла sh_ip_int_br_2.txt.
 
 '''
+import re
+import argparse
+
+def parse_show(f_name):
+    with open(f_name) as f:
+        match = (re.findall('(\S+) + (\S+) +\w+ +\w+ +(up|down|administratively down) +(up|down)',f.read()))
+
+    return match
+
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser( description = 'script likes include cisco command and a little more)')
+    parser.add_argument('filename', action = "store", help = 'File name')
+
+    args = parser.parse_args()
+    print(parse_show(args.filename))
+
+
